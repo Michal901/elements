@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 .main-section {
-  padding: 20px 0 40px 0;
+  padding-top: 20px;
   margin: 0 auto;
   width: 320px;
   font-family: "Roboto", sans-serif;
@@ -29,7 +29,7 @@
   transition: 350ms;
 }
 .film-item:hover {
-  scale: 1.04;
+  scale: 1.02;
 }
 .film-image {
   width: 100%;
@@ -98,5 +98,65 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* <-----------------------  PAGINATION  -------------------------> */
+.pagination-container {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination-button {
+  width: 40px;
+  height: 40px;
+  /* background-color: var(--info-color); */
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  font-weight: normal;
+  color: white;
+}
+.arrows:focus {
+  background-color: var(--info-color);
+}
+/* .pagination-svg {
+} */
+.arrows:focus .pagination-svg {
+  fill: white;
+}
+
+/* .pagination-button:hover, */
+.pagination-button:focus {
+  background-color: var(--info-color);
+  color: #fff;
+}
+.dots,
+.hidden {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .dots {
+    display: flex;
+    justify-content: center;
+    line-height: 34px;
+    cursor: auto;
+  }
+  .dots:focus {
+    background-color: transparent;
+    color: black;
+  }
+  .hidden {
+    display: block;
   }
 }
