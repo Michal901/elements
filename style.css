@@ -19,7 +19,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 .film-item {
   width: 280px;
@@ -51,14 +51,25 @@
   color: var(--info-color);
   line-height: 16px;
 }
+.film-rating {
+  margin-right: 2px;
+  color: #fff;
+  background: var(--info-color);
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.17;
+}
 
 @media screen and (min-width: 768px) {
   .main-section {
     width: 768px;
-    padding: 60px 0;
   }
   .film-list {
-    gap: 25px;
+    gap: 32px;
   }
   .film-item {
     width: 336px;
@@ -77,8 +88,9 @@
     width: 1280px;
   }
   .film-list {
+    gap: 16px;
     justify-content: flex-start;
-    padding-left: 22.5px;
+    padding-left: 31.5px;
   }
   .film-item {
     width: 395px;
@@ -146,6 +158,9 @@
   display: none;
 }
 @media screen and (min-width: 768px) {
+  .pagination-container {
+    margin: 60px 0;
+  }
   .dots {
     display: flex;
     justify-content: center;

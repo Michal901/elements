@@ -3,7 +3,7 @@ const filmList = document.querySelector(".film-list");
 let currentPage = 1;
 let itemsPerPage = 20;
 
-const fetchData = async (page = 1) => {
+const fetchData = async (page = 2) => {
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=c2f18aa0c4ee94c87f87834077fd721a&language=en-EN&per_page=${itemsPerPage}&page=${page}`
@@ -23,6 +23,7 @@ const fetchData = async (page = 1) => {
             <p class="film-info">
               <span class="film-type">${movie.genre}</span> |
               <span class="film-year">${movie.release_date.slice(0, 4)}</span>
+              <span class="film-rating">${movie.vote_average.toFixed(1)}</span>
             </p>
           </div>
         </li>`;
