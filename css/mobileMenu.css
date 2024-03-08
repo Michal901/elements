@@ -38,6 +38,7 @@
   font-size: 28px;
 }
 .open-btn {
+  color: var(--info-color);
   position: fixed;
   top: 16px;
   left: 16px;
