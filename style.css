@@ -74,7 +74,8 @@
   }
   .film-item {
     width: 336px;
-    height: 495px;
+    min-height: 495px;
+    height: 100%;
   }
   .film-image {
     height: 455px;
@@ -92,7 +93,8 @@
   }
   .film-item {
     width: 395px;
-    height: 634px;
+    min-height: 634px;
+    height: 100%;
   }
   .film-image {
     height: 574px;
