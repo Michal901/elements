@@ -23,7 +23,8 @@
 }
 .film-item {
   width: 280px;
-  height: 443px;
+  min-height: 443px;
+  height: 100%;
   list-style-type: none;
   cursor: pointer;
   transition: 350ms;
@@ -57,7 +58,7 @@
   background: var(--info-color);
   border-radius: 5px;
   padding: 2px 5px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -78,9 +79,6 @@
   .film-image {
     height: 455px;
   }
-  .film-details {
-    margin: 5px 0 0 0;
-  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -99,14 +97,14 @@
   .film-image {
     height: 574px;
   }
-  .film-details {
-    margin: 5px 0 0 0;
-  }
   .film-title {
     font-size: 20px;
     line-height: 24px;
   }
   .film-info {
+    display: flex;
+    gap: 5px;
+    align-items: center;
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
@@ -124,7 +122,6 @@
 .pagination-button {
   width: 40px;
   height: 40px;
-  /* background-color: var(--info-color); */
   background-color: #fff;
   border: none;
   border-radius: 5px;
@@ -142,8 +139,7 @@
 .arrows:focus {
   background-color: var(--info-color);
 }
-/* .pagination-svg {
-} */
+
 .arrows:focus .pagination-svg {
   fill: white;
 }
