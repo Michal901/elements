@@ -7,6 +7,7 @@ const isVisible = () => {
   const innerWidth = window.innerWidth;
   if (innerWidth > 768) {
     mobileMenu.style.display = "none";
+    navElements.forEach((navEl) => navEl.classList.remove("visible"));
   } else {
     mobileMenu.style.display = "flex";
   }
