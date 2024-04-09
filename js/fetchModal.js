@@ -1,93 +1,86 @@
-// // import { fetchData } from "./main";
-// // import Notiflix from "notiflix";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 
-// // function addToQueue() {
-// //   Notiflix.Notify.info("The movie has been added to the queue");
-// // }
-// // function infoRemoveFromQueue() {
-// //   Notiflix.Report.info(
-// //     "Removing the movie",
-// //     "You delete a movie from the queue",
-// //     "Okay",
-// //     removeFromQueue
-// //   );
-// // }
-// // function removeFromQueue() {
-// //   Notiflix.Notify.info("The movie has been removed from the queue");
-// // }
-// // function addToWatched() {
-// //   Notiflix.Notify.info("The movie has been added to watched");
-// // }
-// // function infoRemoveFromWatched() {
-// //   Notiflix.Report.info(
-// //     "Removing the movie",
-// //     "You delete a movie from the watched",
-// //     "Okay",
-// //     removeFromWatched
-// //   );
-// // }
-// // function removeFromWatched() {
-// //   Notiflix.Notify.info("The movie has been removed from watched");
-// // }
-// function locStorage(data) {
-//   const moviesWatched =
-//     JSON.parse(localStorage.getItem("movies-watched")) || [];
-//   const moviesQueue = JSON.parse(localStorage.getItem("movies-queue")) || [];
-//   // Buttons
-//   const addWatchedRef = document.querySelector(".add-watched");
-//   const addQueueRef = document.querySelector(".add-queue");
-//   // Listener "Add to Watched" "Add to Queue"
-//   addWatchedRef.addEventListener("click", onWatchedClick);
-//   addQueueRef.addEventListener("click", onQueueClick);
-//   // Zmiana nazwy przycisku
-//   if (localStorage.length > 0) {
-//     if (moviesWatched.find((item) => item.id === data.id)) {
-//       addWatchedRef.classList.add("js-remove-from");
-//       addWatchedRef.textContent = "remove from watched";
-//     }
-//   }
-//   if (localStorage.length > 0) {
-//     if (moviesQueue.find((item) => item.id === data.id)) {
-//       addQueueRef.classList.add("js-remove-from");
-//       addQueueRef.textContent = "remove from queue";
-//     }
-//   }
-//   // Funkcja dodawania do localstorage 'Watched'
-//   function onWatchedClick() {
-//     console.log(data);
-//     if (!moviesWatched.find((item) => item.id === data.id)) {
-//       moviesWatched.push(data);
-//       localStorage.setItem("movies-watched", JSON.stringify(moviesWatched));
-//       const res = addWatchedRef.classList.toggle("js-remove-from");
-//       addWatchedRef.textContent = `${res ? "remove from" : "add to"} watched `;
-//       //   localStorage.removeItem('movies-queue');
-//       addToWatched();
-//       return;
-//     }
-//     let index = moviesWatched.findIndex((object) => object.id === data.id);
-//     moviesWatched.splice(index, 1);
-//     localStorage.setItem("movies-watched", JSON.stringify(moviesWatched));
-//     const res = addWatchedRef.classList.toggle("js-remove-from");
-//     addWatchedRef.textContent = `${res ? "remove from" : "add to"} watched `;
-//     infoRemoveFromWatched();
-//   }
-//   // Funkcja dodawania do lokalstorage 'Queue'
-//   function onQueueClick() {
-//     if (!moviesQueue.find((item) => item.id === data.id)) {
-//       moviesQueue.push(data);
-//       localStorage.setItem("movies-queue", JSON.stringify(moviesQueue));
-//       const res = addQueueRef.classList.toggle("js-remove-from");
-//       addQueueRef.textContent = `${res ? "remove from" : "add to"} queue `;
-//       //   localStorage.removeItem('movies-watched');
-//       addToQueue();
-//       return;
-//     }
-//     let index = moviesQueue.findIndex((object) => object.id === data.id);
-//     moviesQueue.splice(index, 1);
-//     localStorage.setItem("movies-queue", JSON.stringify(moviesQueue));
-//     const res = addQueueRef.classList.toggle("js-remove-from");
-//     addQueueRef.textContent = `${res ? "remove from" : "add to"} queue `;
-//     infoRemoveFromQueue();
-//   }
-// }
-// return locStorage();
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+  measurementId: "YOUR_MEASUREMENT_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Registration //
+document
+  .querySelector(".signup-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    const email = document.querySelector(".signup-email").value;
+    const password = document.querySelector(".signup-password").value;
+    auth
+      .createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("Registration successful", userCredential);
+      })
+      .catch((error) => {
+        console.error("Registration error", error);
+      });
+  });
+
+// Login //
+document
+  .querySelector(".login-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    const email = document.querySelector(".login-email").value;
+    const password = document.querySelector(".login-password").value;
+    auth
+      .signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("Login successful", userCredential);
+      })
+      .catch((error) => {
+        console.error("Login error", error);
+      });
+  });
+
+// Logout //
+document.querySelector(".logout-btn").addEventListener("click", function () {
+  signOut(auth)
+    .then(() => {
+      console.log("User logged out");
+    })
+    .catch((error) => {
+      console.error("Logout error", error);
+    });
+});
+
+// User Status //
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("User is logged in", user);
+    document.querySelector(".logout-btn").style.display = "block";
+  } else {
+    console.log("User is logged out");
+    document.querySelector(".logout-btn").style.display = "none";
+  }
+});
+
+const logRegBtn = document.querySelector(".log-reg-btn");
+const modalRegLog = document.querySelector(".log-reg");
+
+logRegBtn.addEventListener("click", () => {
+  console.log("object");
+  console.log(logRegBtn, modalRegLog);
+  modalRegLog.classList.toggle("show-log-reg-window");
+});

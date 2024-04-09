@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 .mobile-menu {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .list {
   list-style: none;
@@ -11,9 +10,7 @@
 .list li:first-child {
   margin-top: 50px;
 }
-.library-list li:first-child {
-  margin-top: 20px;
-}
+
 .list a {
   padding-left: 60px;
   color: black;
@@ -25,25 +22,45 @@
 .library-list {
   margin-left: 40px;
   list-style: none;
+  transition: 500ms ease;
+}
+.library-list li:first-child {
+  margin-top: 20px;
+}
+.nav-bottom-li {
+  transform: translateY(-98px);
+}
+.nav-hidden {
+  opacity: 0;
 }
 .logo-text {
   padding: 60px 20px 0;
   font-size: 32px;
   font-weight: 500;
 }
-.nav-btn {
+.fa-film {
+  color: var(--info-color);
+}
+.mobile-nav-btn {
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-size: 28px;
 }
-.open-btn {
+.mobile-nav-open-btn {
   color: var(--info-color);
   position: fixed;
   top: 16px;
   left: 16px;
 }
-.nav {
+.plus-minus {
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  left: 36px;
+}
+
+.mobile-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -51,37 +68,37 @@
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
 }
-.nav.visible {
+.mobile-nav.mobile-visible {
   transform: translateX(0);
 }
-.nav-black {
-  background-color: #000;
+.mobile-nav-black {
+  background-color: black;
   width: 60%;
   max-width: 380px;
   min-width: 280px;
   transition-delay: 0.4s;
 }
-.nav-black.visible {
+.mobile-nav-black.mobile-visible {
   transition-delay: 0s;
 }
-.nav-red {
+.mobile-nav-red {
   background-color: red;
   width: 95%;
   transition-delay: 0.2s;
 }
-.nav-red.visible {
+.mobile-nav-red.mobile-visible {
   transition-delay: 0.2s;
 }
-.nav-white {
+.mobile-nav-white {
   background-color: #fff;
   width: 95%;
   position: relative;
   transition-delay: 0s;
 }
-.nav-white.visible {
+.mobile-nav-white.mobile-visible {
   transition-delay: 0.4s;
 }
-.close-btn {
+.mobile-nav-close-btn {
   position: absolute;
   font-size: 32px;
   color: #000;
